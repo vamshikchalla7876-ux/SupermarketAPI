@@ -1,0 +1,876 @@
+{
+  "info": {
+    "_postman_id": "7b4e6e6b-0d33-4b3b-a2eb-1d8ef4bf3d8f",
+    "name": "SpringbootDemo Supermarket API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for the secured supermarket sample API. Create and update requests use module-specific Basic Auth users or admin."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "adminUsername",
+      "value": "admin"
+    },
+    {
+      "key": "adminPassword",
+      "value": "admin123"
+    },
+    {
+      "key": "customerUsername",
+      "value": "customer_manager"
+    },
+    {
+      "key": "customerPassword",
+      "value": "cust123"
+    },
+    {
+      "key": "inventoryUsername",
+      "value": "inventory_manager"
+    },
+    {
+      "key": "inventoryPassword",
+      "value": "inv123"
+    },
+    {
+      "key": "orderUsername",
+      "value": "order_manager"
+    },
+    {
+      "key": "orderPassword",
+      "value": "order123"
+    },
+    {
+      "key": "billingUsername",
+      "value": "billing_manager"
+    },
+    {
+      "key": "billingPassword",
+      "value": "bill123"
+    },
+    {
+      "key": "shippingUsername",
+      "value": "shipping_manager"
+    },
+    {
+      "key": "shippingPassword",
+      "value": "ship123"
+    }
+  ],
+  "item": [
+    {
+      "name": "Supermarket",
+      "item": [
+        {
+          "name": "Get Overview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/supermarket/overview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "supermarket",
+                "overview"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Get All Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customer By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers/CUST-1001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers",
+                "CUST-1001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Customer",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{customerUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{customerPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"CUST-2001\",\n  \"name\": \"Priya Nair\",\n  \"email\": \"priya.nair@example.com\",\n  \"phone\": \"+91-9000000001\",\n  \"membershipTier\": \"GOLD\",\n  \"address\": \"21 Residency Road, Chennai\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{customerUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{customerPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"IGNORED-ID\",\n  \"name\": \"Priya Nair\",\n  \"email\": \"priya.nair@example.com\",\n  \"phone\": \"+91-9000000002\",\n  \"membershipTier\": \"PLATINUM\",\n  \"address\": \"99 Anna Salai, Chennai\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers/CUST-2001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers",
+                "CUST-2001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers/CUST-2001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers",
+                "CUST-2001"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Get All Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory By Sku",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/SKU-MILK-002",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "SKU-MILK-002"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Inventory Item",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{inventoryUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{inventoryPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"SKU-TEA-005\",\n  \"name\": \"Masala Tea\",\n  \"category\": \"Beverages\",\n  \"quantityInStock\": 40,\n  \"unitPrice\": 4.25,\n  \"reorderRequired\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Inventory Item",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{inventoryUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{inventoryPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"IGNORED-SKU\",\n  \"name\": \"Masala Tea Premium\",\n  \"category\": \"Beverages\",\n  \"quantityInStock\": 15,\n  \"unitPrice\": 4.75,\n  \"reorderRequired\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory/SKU-TEA-005",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "SKU-TEA-005"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Inventory Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/SKU-TEA-005",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "SKU-TEA-005"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Order By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/ORD-5001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "ORD-5001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Order",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{orderUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{orderPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"ORD-6001\",\n  \"customerId\": \"CUST-1001\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-RICE-003\",\n      \"productName\": \"Basmati Rice 5kg\",\n      \"quantity\": 2,\n      \"unitPrice\": 12.99,\n      \"lineTotal\": 25.98\n    }\n  ],\n  \"subtotal\": 25.98,\n  \"tax\": 2.60,\n  \"total\": 28.58,\n  \"status\": \"CREATED\",\n  \"orderDate\": \"2026-04-15\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Order",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{orderUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{orderPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"IGNORED-ORDER\",\n  \"customerId\": \"CUST-1001\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-RICE-003\",\n      \"productName\": \"Basmati Rice 5kg\",\n      \"quantity\": 3,\n      \"unitPrice\": 12.99,\n      \"lineTotal\": 38.97\n    }\n  ],\n  \"subtotal\": 38.97,\n  \"tax\": 3.90,\n  \"total\": 42.87,\n  \"status\": \"CONFIRMED\",\n  \"orderDate\": \"2026-04-15\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/ORD-6001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "ORD-6001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Order",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/ORD-6001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "ORD-6001"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Billing",
+      "item": [
+        {
+          "name": "Get All Billing Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/billing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Billing By Invoice Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/billing/INV-7001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing",
+                "INV-7001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Billing Record",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{billingUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{billingPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"INV-8001\",\n  \"orderId\": \"ORD-5001\",\n  \"customerId\": \"CUST-1001\",\n  \"amount\": 18.25,\n  \"paymentMethod\": \"CARD\",\n  \"paymentStatus\": \"PENDING\",\n  \"billingDate\": \"2026-04-15\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/billing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Billing Record",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{billingUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{billingPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"IGNORED-INVOICE\",\n  \"orderId\": \"ORD-5001\",\n  \"customerId\": \"CUST-1001\",\n  \"amount\": 18.25,\n  \"paymentMethod\": \"UPI\",\n  \"paymentStatus\": \"PAID\",\n  \"billingDate\": \"2026-04-15\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/billing/INV-8001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing",
+                "INV-8001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Billing Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/billing/INV-8001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing",
+                "INV-8001"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shipping",
+      "item": [
+        {
+          "name": "Get All Shipping Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipping"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Shipping By Shipment Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipping/SHIP-9001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipping",
+                "SHIP-9001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Shipping Record",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{shippingUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{shippingPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipmentId\": \"SHIP-9100\",\n  \"orderId\": \"ORD-5003\",\n  \"carrier\": \"DTDC\",\n  \"trackingNumber\": \"DTDC123456\",\n  \"status\": \"READY_TO_SHIP\",\n  \"shipDate\": \"2026-04-15\",\n  \"estimatedDeliveryDate\": \"2026-04-18\",\n  \"destination\": \"88 Palm Street, Pune\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shipping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipping"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Shipping Record",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{shippingUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{shippingPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipmentId\": \"IGNORED-SHIPMENT\",\n  \"orderId\": \"ORD-5003\",\n  \"carrier\": \"DTDC\",\n  \"trackingNumber\": \"DTDC123456\",\n  \"status\": \"IN_TRANSIT\",\n  \"shipDate\": \"2026-04-15\",\n  \"estimatedDeliveryDate\": \"2026-04-17\",\n  \"destination\": \"88 Palm Street, Pune\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shipping/SHIP-9100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipping",
+                "SHIP-9100"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Shipping Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/shipping/SHIP-9100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipping",
+                "SHIP-9100"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth Checks",
+      "item": [
+        {
+          "name": "Unauthorized Customer Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"CUST-3001\",\n  \"name\": \"Unauth User\",\n  \"email\": \"unauth@example.com\",\n  \"phone\": \"+91-9000000098\",\n  \"membershipTier\": \"SILVER\",\n  \"address\": \"No Access Street\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Admin Create Billing Record",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{adminUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{adminPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"INV-8100\",\n  \"orderId\": \"ORD-5002\",\n  \"customerId\": \"CUST-1002\",\n  \"amount\": 30.00,\n  \"paymentMethod\": \"CARD\",\n  \"paymentStatus\": \"PAID\",\n  \"billingDate\": \"2026-04-15\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/billing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "billing"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Wrong Role Create Inventory",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{shippingUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{shippingPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"SKU-COFFEE-010\",\n  \"name\": \"Filter Coffee\",\n  \"category\": \"Beverages\",\n  \"quantityInStock\": 22,\n  \"unitPrice\": 5.25,\n  \"reorderRequired\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
